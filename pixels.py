@@ -22,6 +22,15 @@ D_ONE = (T_1H, T_1L)
 # Reset signal is low for longer than 50 microseconds.
 T_RST = 510 // 5 # > 50 microseconds / 50 nanoseconds
 
+def RGB(r, g, b):
+    return (24, (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF))
+
+def RGBW(r, g, b, w):
+    return (32, (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF))
+
+def GRB(r, g, b):
+    return (24, (g & 0xFF) << 16 | (r & 0xFF) << 8 | (b & 0xFF))
+
 class Pixels:
     def __init__(self, pin, pixel_count, rmt_channel=1):
         self.rmt = RMT(rmt_channel, pin, clock_div=4)
